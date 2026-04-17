@@ -1,0 +1,29 @@
+# ── Web scraping ──────────────────────────────────────────────────────────
+requests==2.32.3
+beautifulsoup4==4.12.3
+# NOTA: lxml eliminado — no tiene wheel precompilado para Python 3.14 en Windows.
+# BeautifulSoup usa html.parser nativo de Python (sin instalación extra).
+#
+# NOTA IMPORTANTE — ¿Por qué no scrapeamos IMDb directamente?
+# IMDb pertenece a Amazon y no ofrece API pública gratuita estándar.
+# El acceso a sus datos es de pago o restringido (AWS datasets, licencias comerciales).
+# Además, IMDb bloquea activamente los scrapers mediante:
+#   - Cloudflare anti-bot
+#   - Rate limiting agresivo
+#   - Cambios frecuentes de estructura HTML
+# Solución: usamos OMDb (Open Movie Database), la alternativa oficial y gratuita.
+# OMDb expone los mismos datos de IMDb (ratings, votos, sinopsis, director...)
+# a través de una API JSON estable. Gratuita hasta 1.000 peticiones/día.
+# Registro en: https://www.omdbapi.com/apikey.aspx
+
+# ── Web (Flask) ───────────────────────────────────────────────────────────
+flask==3.0.3
+
+# ── Bot de Telegram ───────────────────────────────────────────────────────
+python-telegram-bot==21.3
+
+# ── Alexa Skill (AWS Lambda) ──────────────────────────────────────────────
+ask-sdk-core==1.19.0
+
+# ── Utilidades ────────────────────────────────────────────────────────────
+python-dotenv==1.0.1  # carga OMDB_API_KEY y TELEGRAM_TOKEN desde .env

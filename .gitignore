@@ -1,0 +1,62 @@
+# Entornos virtuales
+
+venv/
+env/
+.venv/
+
+# Variables de entorno (credenciales, API keys, etc.)
+
+.env
+
+# Archivos compilados / caché de Python
+
+# Archivos compilados / caché de Python
+
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Archivos de logs
+
+*.log
+
+# Archivos temporales
+
+*.tmp
+*.swp
+*.bak
+
+# Dependencias locales / build
+
+build/
+dist/
+*.egg-info/
+
+# IDEs / editores
+
+.vscode/
+.idea/
+
+# Sistema operativo
+
+.DS_Store
+Thumbs.db
+
+# Archivos grandes o innecesarios del proyecto
+
+*.zip
+
+# Documentos que no son parte del código (opcional)
+
+*.docx
+
+# Datos locales (si no quieres subirlos)
+
+data/
+
+# Notebooks checkpoints (por si usas Jupyter)
+
+.ipynb_checkpoints/
+
+package/
