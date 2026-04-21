@@ -154,7 +154,6 @@ crontab -e
 - La cartelera de Madrid se obtiene por scraping de ecartelera con BeautifulSoup.
 - Los perfiles de usuario se definen en `data/perfil.json`.
 - No se usa ninguna base de datos: todo es JSON o estructuras en memoria.
-- **Nunca subas el archivo `.env` a git.** Añádelo a `.gitignore`.
 
 
 
