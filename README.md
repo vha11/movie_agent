@@ -76,22 +76,6 @@ venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-### 4. Consigue tu API key de OMDb (gratis)
-
-1. Ve a [https://www.omdbapi.com/apikey.aspx](https://www.omdbapi.com/apikey.aspx)
-2. Selecciona **FREE** (1.000 peticiones/día)
-3. Introduce tu email y envía el formulario
-4. Activa la key desde el enlace que recibirás por email
-
-### 5. Crea el archivo `.env`
-
-En la raíz del proyecto crea un archivo `.env` con este contenido:
-
-```env
-OMDB_API_KEY=tu_api_key_aqui
-TELEGRAM_TOKEN=tu_token_aqui
-```
-
 ---
 
 ## 📦 Librerías instaladas (`requirements.txt`)
