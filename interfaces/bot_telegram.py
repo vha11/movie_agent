@@ -112,7 +112,6 @@ def _fmt_cartelera(peliculas: list[dict], nombre_cine: str) -> list[str]:
 
     return mensajes if mensajes else ["No se encontraron películas."]
 
-
 # ── Handlers de comandos ───────────────────────────────────────────────────
 
 async def cmd_start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:

@@ -47,15 +47,15 @@ Thumbs.db
 
 *.zip
 
-# Documentos que no son parte del código (opcional)
+# Documentos que no son parte del código
 
 *.docx
 
-# Datos locales (si no quieres subirlos)
+# Datos locales
 
 data/
 
-# Notebooks checkpoints (por si usas Jupyter)
+# Notebooks checkpoints 
 
 .ipynb_checkpoints/
 
