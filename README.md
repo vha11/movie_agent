@@ -356,6 +356,47 @@ Haz clic en **Test** — si todo está bien recibirás el mensaje en Telegram.
 
 ---
 
+## Caché en la Alexa Skill
+
+Para evitar consultas repetidas a la API de OMDb y mejorar la eficiencia, la Alexa Skill implementa un sistema de **caché en memoria**.
+
+### Funcionamiento
+
+- Se utiliza un diccionario global `OMDB_CACHE`
+- Cada título se normaliza (minúsculas y sin espacios extra)
+- Si la película ya fue consultada:
+  - Se devuelve directamente desde caché (**cache hit**)
+  - No se realiza una nueva petición HTTP
+- Si no existe:
+  - Se consulta OMDb (**cache miss**)
+  - Se guarda el resultado en caché
+
+### Ejemplo real (CloudWatch Logs)
+
+Primera consulta:
+```
+OMDb cache miss: one day
+```
+Segunda consulta:
+```
+OMDb cache hit: one day
+```
+
+### Consideraciones
+
+- La caché es **en memoria**, no persistente
+- Funciona mientras la instancia de AWS Lambda esté activa
+- Si AWS reinicia la instancia, la caché se limpia
+- Aun así, reduce significativamente el número de peticiones a la API
+
+### Beneficios
+
+- Menor latencia en respuestas repetidas
+- Menor uso de la API (límite de 1000 requests/día en OMDb)
+- Cumple con el requisito de optimización de consultas
+
+---
+
 ## Notas
 
 - Toda la información de películas se obtiene en tiempo real via OMDb API — no hay base de datos.

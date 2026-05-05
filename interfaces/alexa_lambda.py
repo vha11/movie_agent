@@ -43,22 +43,52 @@ logger.setLevel(logging.INFO)
 
 OMDB_URL = "https://www.omdbapi.com/"
 
+OMDB_CACHE = {}
+
+def _normalizar_titulo(titulo: str) -> str:
+    """Normaliza el título para usarlo como clave de caché."""
+    return " ".join((titulo or "").strip().lower().split())
+
+
 def _omdb(titulo: str) -> dict:
-    """Consulta OMDb y devuelve el dict de la película o {'error': '...'}."""
+    """Consulta OMDb con caché en memoria y devuelve el dict de la película."""
     api_key = os.environ.get("OMDB_API_KEY", "")
+    cache_key = _normalizar_titulo(titulo)
+
+    if not cache_key:
+        return {"error": "Título vacío"}
+
+    if cache_key in OMDB_CACHE:
+        logger.info("OMDb cache hit: %s", cache_key)
+        return OMDB_CACHE[cache_key]
+
+    logger.info("OMDb cache miss: %s", cache_key)
+
     if not api_key:
         return {"error": "API key no configurada"}
+
     try:
         resp = requests.get(
             OMDB_URL,
-            params={"t": titulo, "apikey": api_key, "plot": "short", "r": "json"},
+            params={
+                "t": titulo,
+                "apikey": api_key,
+                "plot": "short",
+                "r": "json",
+            },
             timeout=8,
         )
+        resp.raise_for_status()
         data = resp.json()
+
         if data.get("Response") == "False":
             return {"error": data.get("Error", "No encontrada")}
+
+        OMDB_CACHE[cache_key] = data
         return data
+
     except Exception as exc:
+        logger.error("Error consultando OMDb: %s", exc)
         return {"error": str(exc)}
 
 
