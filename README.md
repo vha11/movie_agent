@@ -404,3 +404,40 @@ OMDb cache hit: one day
 - Las peticiones a OMDb se hacen en paralelo con `ThreadPoolExecutor` para reducir el tiempo de espera.
 - El perfil de usuario se define en `data/perfil.json` y es completamente configurable.
 - El filtro es extensible: añadir un nuevo criterio solo requiere una función en `core/filtro.py`.
+
+
+---
+pon todo esto en un markdown
+---
+
+## Correspondencia con los requisitos del entregable
+
+A continuación se indica qué fichero del proyecto cumple cada uno de los requisitos solicitados:
+
+### ✔ Script CLI (consulta por línea de comandos)
+
+> “Un fichero .py que reciba por línea de comandos el nombre de la película y devuelva los campos”
+
+- Ruta: `movie_agent/main.py`
+- Descripción:
+  Script ejecutable que recibe el nombre de una película como argumento y devuelve su información (nota, votos, sinopsis, director, duración, etc.).
+- Ejemplo de uso:
+
+```
+python main.py "Inception"
+python main.py "Interstellar" --campo nota
+```
+
+###✔ Lambda de Alexa Skill 
+> "El fichero .py de la lambda de Alexa"
+
+- Ruta: movie_agent/interfaces/alexa_lambda.py
+- Descripción:
+Implementa la lógica de la Alexa Skill utilizando ask-sdk. Permite consultar información de películas mediante voz y utiliza caché en memoria para optimizar las consultas a OMDb.
+
+###✔ Analizador de cartelera 
+> "El fichero .py del analizador de cartelera"
+
+- Ruta: movie_agent/scrapers/cartelera_scraper.py
+- Descripción:
+Scraper que obtiene la cartelera de cine de Madrid desde eCartelera, extrae los títulos y los enriquece con datos de OMDb.
