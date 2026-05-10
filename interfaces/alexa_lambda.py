@@ -91,7 +91,7 @@ def _omdb(titulo: str) -> dict:
         logger.error("Error consultando OMDb: %s", exc)
         return {"error": str(exc)}
 
-
+#
 def _get_slot(handler_input: HandlerInput, slot_name: str) -> str:
     """Extrae el valor de un slot del intent de forma segura."""
     try:
